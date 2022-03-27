@@ -1,3 +1,8 @@
+## Problem Statement
+1. The virtual keyboard needs to facilitate numbers, special characters, and alphabets along with space, delete, enter, shift and caps lock.
+2. If the user clicks the normal keys like alphabets or letters, the keys should change its position randomly.
+3. Ensure keys like delete, shift, caps lock works as expected.
+
 ## Virtual-Keyboard
 A responsive Virtual-Keyboard with Neon lights.
 
