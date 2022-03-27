@@ -75,7 +75,8 @@ export default {
           {keyName: '->', keyMap: 'ArrowRight', capsKey: '->', classes: 'keys arrow_right', active: false}
         ]
       ],
-      functionKeyCodes: ['Tab', 'Control', 'Alt', 'Meta', 'Space', 'ArrowLeft', 'ArrowRight', 'Shift', 'CapsLock', 'Backspace', 'Enter']
+      functionKeyCodes: ['Tab', 'Control', 'Alt', 'Meta', 'Space', 'ArrowLeft', 'ArrowRight', 'Shift', 'CapsLock', 'Backspace', 'Enter'],
+      shuffleType: 'shuffleType1'
     }
   },
   methods: {
@@ -123,18 +124,24 @@ export default {
         i = Math.floor(Math.random() * n--);
 
         // to shuffle over rows
-        // let copy2 = [], m = this.keys[i].length, j;
-        // while(m) {
-        //   j = Math.floor(Math.random() * m--);
-        //   copy2.push(this.keys[i].splice(j, 1)[0]);
-        // }
-        // this.keys[i] = copy2;
+        if (this.shuffleType === 'shuffleType1' || this.shuffleType === 'shuffleType3') {
+          let copy2 = [], m = this.keys[i].length, j;
+          while(m) {
+            j = Math.floor(Math.random() * m--);
+            copy2.push(this.keys[i].splice(j, 1)[0]);
+          }
+          this.keys[i] = copy2;
+        }
 
-        // And move it to the new array.
-        copy.push(this.keys.splice(i, 1)[0]);
+        if (this.shuffleType === 'shuffleType2' || this.shuffleType === 'shuffleType3') {
+          // And move it to the new array.
+          copy.push(this.keys.splice(i, 1)[0]);
+        }
       }
     
-      this.keys = copy;
+      if (this.shuffleType === 'shuffleType2' || this.shuffleType === 'shuffleType3') {
+        this.keys = copy;
+      }
     }
   },
   created () {

@@ -17,7 +17,18 @@
         </div>
       </div>
     </div>
+    <div class="shuffle-type">
+      <h2>Shuffle Type</h2>
+      <input type=radio v-model="shuffleType" value="shuffleType1">
+      <label for="rdo1" class="radio-label" > <span class="radio-border"></span> Type 1 </label>
+      <br>
+      <input type=radio v-model="shuffleType" value="shuffleType2">
+      <label for="rdo2" class="radio-label" ><span class="radio-border"></span> Type 2 </label>
+      <br>
+      <input type=radio v-model="shuffleType" value="shuffleType3">
+      <label for="rdo3" class="radio-label" ><span class="radio-border"></span> Type 3 </label>
     </div>
+  </div>
 </template>
 
 <script src="./App.js"></script>
@@ -307,7 +318,10 @@ body.active {
   opacity: 1;
 }
 
-/* type writer effect */
-
-/* DEMO-SPECIFIC STYLES */
+.shuffle-type {
+  position: absolute;
+  bottom: 100px;
+  left: calc(50vw - 80px);
+  text-align: center;
+}
 </style>
