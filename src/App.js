@@ -2,7 +2,6 @@ export default {
   name: "App",
   data () {
     return {
-      darkModeEnabled: false,
       capsLockEnabled: false,
       keys: [
         [
@@ -80,13 +79,6 @@ export default {
     }
   },
   methods: {
-    toggleDarkMode () {
-      /**
-       * utility function to toggle the dark mode
-       */
-      this.darkModeEnabled = !this.darkModeEnabled
-      document.body.classList.toggle('active')
-    },
     keyDownEventListner (e) {
       // focus on input tag so that every input is taken
       document.getElementById('user-input').focus()
