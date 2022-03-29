@@ -76,7 +76,8 @@ export default {
         ]
       ],
       functionKeyCodes: ['Tab', 'Control', 'Alt', 'Meta', 'Space', 'ArrowLeft', 'ArrowRight', 'Shift', 'CapsLock', 'Backspace', 'Enter'],
-      shuffleType: 'shuffleType1'
+      shuffleType: 'shuffleType1',
+      userInput: ''
     }
   },
   methods: {
@@ -106,11 +107,10 @@ export default {
       if (e.code === 'CapsLock') {
         this.capsLockEnabled = false
       }
+      // we will remove active class from every key once any key is lifted up
       for(let i = 0; i<this.keys.length;i++) {
         for(let j = 0; j < this.keys[i].length; j++) {
-          if (this.keys[i][j].keyMap.toLocaleLowerCase() === e.key.toLocaleLowerCase() || this.keys[i][j].keyMap.toLocaleLowerCase() === e.code.toLocaleLowerCase()) {
-            this.keys[i][j].active = false
-          }
+          this.keys[i][j].active = false
         }
       }
     },
@@ -141,6 +141,30 @@ export default {
     
       if (this.shuffleType === 'shuffleType2' || this.shuffleType === 'shuffleType3') {
         this.keys = copy;
+      }
+    },
+    shuffleOnClick (pressedKey, index, keyIndex) {
+      // A function which modifies terms based on the click
+
+      if(this.functionKeyCodes.indexOf(pressedKey.keyMap) === -1) {
+        // if the clicked key is a non-functional key, we will just append it's value to the string
+
+        const c = this.capsLockEnabled ? pressedKey.capsKey : pressedKey.keyName
+        this.userInput = this.userInput + c
+        this.shuffleKeys()
+      } else {
+
+        if (pressedKey.keyMap === 'CapsLock') {
+          this.capsLockEnabled = !this.capsLockEnabled
+          // next line disables activated class on caps lock
+          this.keys[index][keyIndex].active = !this.keys[index][keyIndex].active
+
+        } else if (pressedKey.keyMap === 'Backspace') {
+          this.userInput = this.userInput.slice(0,-1)
+
+        } else if (pressedKey.keyMap === 'Space') {
+          this.userInput = this.userInput + ' '
+        }
       }
     }
   },

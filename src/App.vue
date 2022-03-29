@@ -3,14 +3,15 @@
     <div class="container">
       <div class="content">
         <h2 class="typewriter">Welcome to the most awesome virtual keyboard!! Start Typing...</h2>
-        <input class="text" id="user-input" type="text" />
+        <input class="text" id="user-input" type="text" v-model="userInput" />
       </div>
       <div class="keyboard_wrapp">
         <div class="keyboard_keys">
           <div v-for="index in keys.length" :key="index" class="row">
             <div v-for="(myKey,keyIndex) in keys[index-1]" 
               :key="keyIndex + myKey.keyName" 
-              :class="['neon-button', myKey.classes, {'active': myKey.active}]">
+              :class="['neon-button', myKey.classes, {'active': myKey.active}]"
+              @click="() => shuffleOnClick(myKey, index-1, keyIndex)" >
                 {{capsLockEnabled ? myKey.capsKey : myKey.keyName}}
             </div>
           </div>
